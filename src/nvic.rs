@@ -39,6 +39,7 @@ pub struct Nvic {
     _reserved6: [u8; 240usize],
     
     # [ doc = "0x400 - Interrupt Priority Register" ]
+    // reference-manual says: These registers are byte-accessible
     pub ipr: [volatile::ReadWrite<Ipr>;98],
     
     _reserved7: [u8; 2718usize],
