@@ -39,9 +39,9 @@ pub struct Nvic {
     _reserved6: [u8; 240usize],
     
     # [ doc = "0x400 - Interrupt Priority Register" ]
-    pub ipr: [volatile::ReadWrite<Ipr>; 25],
+    pub ipr: [volatile::ReadWrite<Ipr>;98],
     
-    _reserved7: [u8; 2716usize],
+    _reserved7: [u8; 2718usize],
     # [ doc = "0xf00 - Software Triggered Interrupt Register" ]
     pub stir: volatile::WriteOnly<Stir>,
 }
@@ -211,51 +211,24 @@ impl Iabr {
 # [ derive ( Debug , Clone , Copy , PartialEq , Eq ) ]
 # [ repr ( C ) ]
 pub struct Ipr {
-    bits: u32,
+    bits: u8,
 }
 
 impl Ipr {
     # [ doc = "Bits 0:7 - IPR_N0" ]
-    pub fn ipr_n0(&self) -> u8 {
-        self.bits.get_range(0u8..8u8) as u8
+    pub fn get(&self) -> u8 {
+        self.bits
     }
-    # [ doc = "Bits 8:15 - IPR_N1" ]
-    pub fn ipr_n1(&self) -> u8 {
-        self.bits.get_range(8u8..16u8) as u8
-    }
-    # [ doc = "Bits 16:23 - IPR_N2" ]
-    pub fn ipr_n2(&self) -> u8 {
-        self.bits.get_range(16u8..24u8) as u8
-    }
-    # [ doc = "Bits 24:31 - IPR_N3" ]
-    pub fn ipr_n3(&self) -> u8 {
-        self.bits.get_range(24u8..32u8) as u8
+
+    pub fn set(&mut self, value: u8) {
+        self.bits = value;
     }
 }
 
 impl Default for Ipr {
     # [ doc = r" Reset value" ]
     fn default() -> Self {
-        Ipr { bits: 0u32 }
-    }
-}
-
-impl Ipr {
-    # [ doc = "Bits 0:7 - IPR_N0" ]
-    pub fn set_ipr_n0(&mut self, value: u8) {
-        self.bits.set_range(0u8..8u8, value as u32);
-    }
-    # [ doc = "Bits 8:15 - IPR_N1" ]
-    pub fn set_ipr_n1(&mut self, value: u8) {
-        self.bits.set_range(8u8..16u8, value as u32);
-    }
-    # [ doc = "Bits 16:23 - IPR_N2" ]
-    pub fn set_ipr_n2(&mut self, value: u8) {
-        self.bits.set_range(16u8..24u8, value as u32);
-    }
-    # [ doc = "Bits 24:31 - IPR_N3" ]
-    pub fn set_ipr_n3(&mut self, value: u8) {
-        self.bits.set_range(24u8..32u8, value as u32);
+        Ipr { bits: 0u8 }
     }
 }
 
