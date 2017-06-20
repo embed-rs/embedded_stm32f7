@@ -216,7 +216,6 @@ pub struct Ipr {
 }
 
 impl Ipr {
-    # [ doc = "Bits 0:7 - IPR_N0" ]
     pub fn get(&self) -> u8 {
         self.bits
     }
